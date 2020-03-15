@@ -1,0 +1,26 @@
+
+<ion-content padding>
+   <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="Email" name="email" id="loginField"
+                       type="text" required [(ngModel)]="username" #email></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Password" name="password" id="passwordField"
+                       type="password" required [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <ion-button type="submit" color="primary" (click)="login();" expand="full" >Login</ion-button>
+        
+        <ion-button routerLink="/signup" routerDirection="forward" (click)="register();" color="primary" expand="full" >register</ion-button>
+      </ion-col>
+    </ion-row>
+ 
+</ion-content>

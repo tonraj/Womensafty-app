@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,9 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private nativeStorage: NativeStorage,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -23,5 +28,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.nativeStorage.getItem('login')
+    .then(
+      data => {
+        this.router.navigateByUrl('/tabs/tab1');
+      },
+      error => {
+        this.router.navigateByUrl('login');
+      }
+    );
+
   }
 }
