@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +26,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
     LaunchNavigator,
     NativeStorage,
     HTTP,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

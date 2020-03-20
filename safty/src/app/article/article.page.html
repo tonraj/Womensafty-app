@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+  <p *ngIf="loading == true"  class="ion-text-center"><ion-spinner color="primary" name="dots"></ion-spinner></p>
+
+
+  <div *ngIf="loading == false">
+
+    <img  [src]="article.thumbnail">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{article.title}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <small>{{article.description}}</small>
+        <p [innerHTML]="article.html"></p>
+      </ion-card-content>
+    </ion-card>
+  
+  </div>  
+
+</ion-content>

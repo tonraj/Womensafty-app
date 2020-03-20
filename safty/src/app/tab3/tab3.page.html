@@ -28,9 +28,7 @@
   <ion-item-group>
       <ion-item-divider>
         <ion-label style="font-size: 11.5px;color:grey">ACCOUNT INFO</ion-label>
-        <small slot="end" style="float:right;margin-top:-2px;" class="ion-text-end">
-        <button style="margin-right:10px;background-color: white;padding:5px;border-radius:2px;color:#2f39bf;" (click)="update();">Update</button>
-        </small>
+        
       </ion-item-divider>
     
       <ion-item >
@@ -45,8 +43,40 @@
     
       
     </ion-item-group>
+
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label style="font-size: 11.5px;color:grey">Emergency Contacts</ion-label>
+        
+      </ion-item-divider>
+
+      <div class="ion-padding ion-text-center" *ngIf="emer == 'NO'">
+        No Emergency Contacts given
+        <p><ion-button color="dark">Setup Contacts</ion-button></p>
+      </div>
+
+      <div *ngIf="emer == 'YES'">
+    
+      <ion-item >
+          <ion-icon color="primary" name="phone-portrait" slot="start"></ion-icon>
+          <ion-label style="font-weight: 300;"> {{contacts.contact1}}</ion-label>
+        </ion-item>
+      
+        <ion-item lines="none">
+          <ion-icon color="primary" name="phone-portrait" slot="start"></ion-icon>
+          <ion-label style="font-weight: 300;"> {{contacts.contact2}}</ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon color="primary" name="phone-portrait" slot="start"></ion-icon>
+          <ion-label style="font-weight: 300;"> {{contacts.contact3}}</ion-label>
+        </ion-item>
+    
+      </div>
    
-   
+    </ion-item-group>
+
 
 
     </div>

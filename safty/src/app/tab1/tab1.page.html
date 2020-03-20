@@ -22,7 +22,7 @@
   <ion-row>
     <ion-col size="6">
       <ion-card class="ion-padding">
-        <ion-button color="success" class="myButton" expand="round">Help Me</ion-button>
+        <ion-button color="success" class="myButton" (click)="help()" expand="round">Help Me</ion-button>
 
         <p class="ion-text-center">Tab twice send messages</p>
       </ion-card>
@@ -33,54 +33,50 @@
       <ion-card>
         <ion-card-header>
           <ion-card-subtitle>Emergency Contacts</ion-card-subtitle>
-          <ion-card-title>ON</ion-card-title>
-          <p>Edit Contacts</p>
+          <ion-card-title>{{emer}}</ion-card-title>
+          <p (click)="emerg()">Edit Contacts</p>
         </ion-card-header>
        
       </ion-card>
     </ion-col>
-  
+
+    <ion-col size="6">
+        <ion-button  (click)="hospital();" expand="full" >Nearby Hospitals</ion-button>
+   
+    </ion-col>
+
+    <ion-col size="6">
+       <ion-button  (click)="police();" expand="full" >Nearby Police Stations</ion-button>
+    </ion-col>
+
+
+      
   </ion-row>
 <p style="background-color:cornflowerblue;color:white;padding:8px;" >TIPS & Self Defence</p>
 
+<p *ngIf="loading1 == true"  class="ion-text-center"><ion-spinner color="primary" name="dots"></ion-spinner></p>
+
+  <div *ngIf="loading1 == false" >
+
+    
+
   <ion-slides pager="false" [options]="slideOpts">
-    <ion-slide>
+    
+    <ion-slide (click)="toArticle(article.id, article.title)" *ngFor="let article of this.articles">
       <ion-card>
+        <img  [src]="article.thumbnail">
         <ion-card-header>
-           <ion-card-title>Card Title</ion-card-title>
+          <ion-card-subtitle>{{article.title}}</ion-card-subtitle>
         </ion-card-header>
       
         <ion-card-content>
-          Articel Description
+          {{article.description}}
         </ion-card-content>
       </ion-card>
     </ion-slide>
-    <ion-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          <ion-card-title>Card Title</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-    <ion-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          <ion-card-title>Card Title</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
+  
   </ion-slides>
+
+  </div>  
 </div>
 </ion-content>

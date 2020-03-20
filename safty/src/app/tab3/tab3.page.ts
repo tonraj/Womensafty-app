@@ -20,6 +20,9 @@ export class Tab3Page {
   loading:boolean = true;
 
   user:any = {};
+  contacts:any = {};
+
+  emer:string = "NO";
 
   constructor(private http: HTTP, private router: Router,private storage: Storage,private api: ApiService) {
     this.storage.get('login').then((val) => {
@@ -29,6 +32,24 @@ export class Tab3Page {
       var headers = {
         'Authorization': 'Bearer ' + val
       };
+
+
+      this.http.get(this.api.api_uri + 'addecontact', {}, headers)
+      .then(data => {
+
+      if(data.status == 203){
+        this.emer = "NO";
+        this.api.presentToast("You have not give emergency contacts, Plese update Emergency contacts");
+      }else{
+        this.emer = "YES";
+        
+        this.contacts = JSON.parse(data.data);
+      }
+
+     
+     
+
+     });
   
       this.http.post(this.api.api_uri + 'getUser', {}, headers)
       .then(data => {
