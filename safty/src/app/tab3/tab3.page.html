@@ -1,17 +1,58 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Account
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <p *ngIf="loading == true"  class="ion-text-center"><ion-spinner color="primary" name="dots"></ion-spinner></p>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div *ngIf="loading == false" >
+
+<div style="background-color:rgba(47,101,191,1)"> 
+  <ion-item  class="ion-margin " lines="none">
+      <ion-thumbnail slot="start">
+        <img src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png">
+      </ion-thumbnail>
+      <ion-label><h1>Hi, {{user.name}} </h1>
+        <ion-label >  <ion-button (click)="logout();" color="danger"><ion-icon slot="start" name="log-out"></ion-icon> Log Out</ion-button>
+      </ion-label>
+        
+      </ion-label>
+    </ion-item>
+  </div>
+
+  
+  <ion-item-group>
+      <ion-item-divider>
+        <ion-label style="font-size: 11.5px;color:grey">ACCOUNT INFO</ion-label>
+        <small slot="end" style="float:right;margin-top:-2px;" class="ion-text-end">
+        <button style="margin-right:10px;background-color: white;padding:5px;border-radius:2px;color:#2f39bf;" (click)="update();">Update</button>
+        </small>
+      </ion-item-divider>
+    
+      <ion-item >
+          <ion-icon color="primary" name="mail" slot="start"></ion-icon>
+          <ion-label style="font-weight: 300;"> {{user.email}}</ion-label>
+        </ion-item>
+      
+        <ion-item lines="none">
+          <ion-icon color="primary" name="phone-portrait" slot="start"></ion-icon>
+          <ion-label style="font-weight: 300;"> {{user.phone}}</ion-label>
+        </ion-item>
+    
+      
+    </ion-item-group>
+   
+   
+
+
+    </div>
+ 
+    
+   
+  
+
 </ion-content>

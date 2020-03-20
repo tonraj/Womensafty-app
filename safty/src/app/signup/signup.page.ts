@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SignupPage implements OnInit {
 
-  constructor(private router: Router, private api: ApiService, private http:HTTP) { }
+  constructor(private storage: Storage, private router: Router, private api: ApiService, private http:HTTP) { }
 
   ngOnInit() {
   }
@@ -40,8 +42,10 @@ export class SignupPage implements OnInit {
         'phone' : phone,
         'name':name,
     }
+
+    console.log(payload);
   
-          this.http.post(this.api.api_uri + '/api/register', payload, {})
+          this.http.post(this.api.api_uri + 'register', payload, {})
             .then(data => {
               
               console.log(data.status);
@@ -51,12 +55,22 @@ export class SignupPage implements OnInit {
                 this.router.navigate(['/login'])
 
               }else if(data.status == 208){
-                this.api.presentToast(JSON.parse(data.data)['msg']);
+                this.api.presentToast("Sign up Successfully!");
+             
+                  var json = JSON.parse(data.data);
+                  this.storage.set('login', json['seccess']['token']);
+                  this.router.navigate(['/tabs/tab1']);
+    
+    
+                
+              }else if(data.status == 500){
+                this.api.presentToast("Looks like you are already registered with same email.");
               }
   
             })
             .catch(error => {
   
+              console.log(error)
               
             });
 

@@ -13,17 +13,18 @@ import {HttpModule} from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [ BrowserModule, HttpModule,HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [ BrowserModule, HttpModule,HttpClientModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
+    LaunchNavigator,
     NativeStorage,
-    IonicStorageModule,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
